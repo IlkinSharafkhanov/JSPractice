@@ -184,7 +184,7 @@ newElement.classList.add("items");
 const itemList = document.querySelector(".added-items");
 itemList.appendChild(newElement);
 
-//getting variables from document 
+//getting variables from document
 const todoInput = document.querySelector("#inputs");
 const todoButton = document.querySelector("#submit");
 const todoList = document.querySelector(".items");
@@ -195,7 +195,18 @@ todoButton.addEventListener("click", () => {
   if (taskInput.trim() === "") {
     alert("Enter input!");
   } else {
-    document.querySelector(".items").innerHTML += `<li class="item"> ${taskInput}<button class="delete">X</button></li>`;
+    document.querySelector(".items").innerHTML += `
+    <div class = "list">
+    <li class="item"> <span id = "inputVal">${taskInput}</span>
+    <div class="buttons">
+    <button class = "edit"><i class="fa-regular fa-pen-to-square"></i></button>
+    <button class="delete">X</button></div>
+    </li>
+    <div id = "edit-tools">
+    <input id = "editor" type = "text" placeholder = "Edit your text..">
+    <button class = "submit-edit"><i class="fa-solid fa-check"></i></button>
+    </div>
+    </div>`;
   }
   document.querySelector("#inputs").value = "";
 });
@@ -203,9 +214,26 @@ todoButton.addEventListener("click", () => {
 //adding event of deleting list inside ul while clicking red button
 todoList.addEventListener("click", deleteSome);
 
-function deleteSome(e){
-    const item = e.target //target is getting every element while clicking
-    if(item.classList[0] === 'delete'){ //we check if item that we clicking is item class of 'delete' 
-        item.parentElement.remove() //we take the parent of that element and delete it
-    }
+function deleteSome(e) {
+  const item = e.target; //target is getting every element while clicking
+  if (item.classList[0] === "delete") {//we check if item that we clicking is item class of 'delete' 
+    parentButtons = item.parentElement;
+    parentButtons.parentElement.remove(); //we take the parent of that element and delete it
+  } else if (item.classList[0] === "edit" || item.classList[0] === "fa-regular") {
+    document.getElementById("edit-tools").style.display = "flex"; //we change display property of edit-tools from none to flex
+
+    const submitBtn = document.querySelector(".submit-edit");
+    const span = document.querySelector("#inputVal")
+    submitBtn.addEventListener("click", () => {
+      const editInput = document.querySelector("#editor").value;
+      if (editInput.trim() === "") {
+        alert("Enter input!");
+      } else {
+      span.textContent = editInput
+      
+      document.querySelector("#editor").value = ""
+      document.getElementById("edit-tools").style.display = "none"
+      }
+    });
+  }
 }

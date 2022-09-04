@@ -25,18 +25,19 @@ body {
 }
 
 body .content .to-do-list input {
-  height: 25px;
-  width: 250px;
+  border: none;
+  height: 35px;
+  width: 260px;
   padding: 15px;
 }
 
 body .content .to-do-list button {
-  width: 75px;
+  width: 85px;
+  height: 35px;
   background-color: #fd8e5f;
   border: none;
   color: white;
   padding: 10px;
-  border-radius: 5px;
   -webkit-transition: .4s;
   transition: .4s;
   cursor: pointer;
@@ -51,7 +52,11 @@ body .content .added-items {
   margin-bottom: 30px;
 }
 
-body .content .added-items ul li {
+body .content .added-items ul .list {
+  margin-bottom: 15px;
+}
+
+body .content .added-items ul .list li {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -61,18 +66,25 @@ body .content .added-items ul li {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border: 2px solid #fd8e5f;
-  border-radius: 3px;
+  border-radius: 3px 3px 0px 0px;
   padding: 20px;
   height: 30px;
   background-color: #1d2547;
   color: white;
   list-style: none;
-  margin-bottom: 15px;
   font-size: 16px;
 }
 
-body .content .added-items ul li button {
+body .content .added-items ul .list li .buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-column-gap: 10px;
+          column-gap: 10px;
+}
+
+body .content .added-items ul .list li .buttons .delete {
+  border-radius: 2px;
   background-color: #af3838;
   color: white;
   padding: 5px 8px;
@@ -82,7 +94,38 @@ body .content .added-items ul li button {
   transition: .4s;
 }
 
-body .content .added-items ul li button:hover {
+body .content .added-items ul .list li .buttons .edit {
+  border-radius: 2px;
+  background-color: #24b024;
+  color: white;
+  padding: 5px 8px;
+  border: none;
+  cursor: pointer;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+body .content .added-items ul .list li button:hover {
   opacity: 0.8;
+}
+
+body .content .added-items ul .list #edit-tools {
+  display: none;
+}
+
+body .content .added-items ul .list #edit-tools input {
+  width: 250px;
+  border: none;
+  border-radius: 0px 0px 0px 3px;
+  padding: 5px;
+}
+
+body .content .added-items ul .list #edit-tools button {
+  background-color: #24b024;
+  border-radius: 0px 0px 3px 0px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  width: 100px;
 }
 /*# sourceMappingURL=styles.css.map */
